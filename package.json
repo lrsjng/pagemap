@@ -1,0 +1,29 @@
+{
+  "name": "pagemap",
+  "version": "0.1.0",
+  "description": "Mini map for web pages.",
+  "homepage": "https://larsjung.de/pagemap/",
+  "bugs": "https://github.com/lrsjng/pagemap/issues",
+  "author": "Lars Jung <lrsjng@gmail.com> (https://larsjung.de)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lrsjng/pagemap.git"
+  },
+  "main": "dist/pagemap",
+  "scripts": {
+    "lint": "eslint .",
+    "build": "rimraf dist && webpack",
+    "precommit": "npm run -s lint && npm run -s build"
+  },
+  "devDependencies": {
+    "babel-loader": "6.2.4",
+    "babel-preset-es2015": "6.9.0",
+    "eslint": "2.12.0",
+    "rimraf": "2.5.2",
+    "webpack": "1.13.1"
+  },
+  "engines": {
+    "node": ">=6.0.0"
+  }
+}

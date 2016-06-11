@@ -1,0 +1,5 @@
+build
+coverage
+local
+node_modules
+npm-debug.log
