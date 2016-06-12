@@ -6,7 +6,7 @@ module.exports = {
     entry: './lib/pagemap.js',
     output: {
         path: './dist',
-        filename: 'pagemap.js',
+        filename: 'pagemap.min.js',
         library: 'pagemap',
         libraryTarget: 'umd'
     },

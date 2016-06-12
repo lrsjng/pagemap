@@ -1,0 +1,59 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    width: 2000px;
+    height: 2000px;
+    background-color: #eee;
+}
+
+#map {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 120px;
+    height: 100%;
+    z-index: 100;
+}
+
+#container {
+    position: relative;
+    left: 100px;
+    top: 100px;
+    width: 600px;
+    height: 600px;
+    outline: 4px solid #222;
+    overflow: auto;
+}
+
+#content {
+    width: 800px;
+    height: 1000px;
+    background-color: #ccc;
+}
+
+#container2 {
+    position: relative;
+    left: 100px;
+    top: 100px;
+    width: 300px;
+    height: 400px;
+    outline: 4px solid #222;
+    overflow: auto;
+}
+
+#content2 {
+    width: 500px;
+    height: 600px;
+    background-color: #aaa;
+}
+
+.checkers {
+    background-image:
+        linear-gradient(45deg, #fff 25%, transparent 25%, transparent 75%, #fff 75%, #fff),
+        linear-gradient(45deg, #fff 25%, transparent 25%, transparent 75%, #fff 75%, #fff);
+    background-size: 100px 100px;
+    background-position: 0 0, 50px 50px
+}
