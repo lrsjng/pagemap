@@ -10,7 +10,7 @@ Mini map for web pages.
 
 add a `canvas` tag to your HTML page:
 ```html
-<canvas id='#map'></canvas>
+<canvas id='map'></canvas>
 ```
 
 fix it's position on the screen:
