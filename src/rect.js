@@ -32,17 +32,19 @@ const getOffset = el => {
     const br = el.getBoundingClientRect();
     return {
         x: br.left + win.pageXOffset,
-        y: br.top + win.pageYOffset
+        y: br.top + win.pageYOffset,
+        width: br.width,
+        height: br.height
     };
 };
 
 Rect.ofElement = el => {
-    const {x, y} = getOffset(el);
+    const {x, y, width, height} = getOffset(el);
     return Rect(
         x,
         y,
-        el.offsetWidth,
-        el.offsetHeight
+        width,
+        height
     );
 };
 
