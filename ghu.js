@@ -39,7 +39,7 @@ ghu.task('build:script', runtime => {
                     loader: 'babel-loader',
                     query: {
                         cacheDirectory: true,
-                        presets: ['es2015']
+                        presets: ['env']
                     }
                 }
             ]

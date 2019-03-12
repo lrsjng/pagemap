@@ -1,6 +1,6 @@
-build
-coverage
-dist
-es5
-local
-node_modules
+/build/
+/coverage/
+/dist/
+/es5/
+/local/
+/node_modules/

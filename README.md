@@ -1,7 +1,7 @@
 # pagemap
 
 [![license][license-img]][github] [![web][web-img]][web] [![github][github-img]][github] [![npm][npm-img]][npm]  
-[![version][npm-v-img]][npm] [![downloads][npm-dm-img]][npm] [![dependencies status][gemnasium-img]][gemnasium]
+[![version][npm-v-img]][npm] [![downloads][npm-dm-img]][npm]
 
 Mini map for web pages.
 
@@ -45,7 +45,7 @@ pagemap(document.querySelector('#map'), {
 ## License
 The MIT License (MIT)
 
-Copyright (c) 2016 Lars Jung (https://larsjung.de)
+Copyright (c) 2019 Lars Jung (https://larsjung.de)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -69,7 +69,6 @@ THE SOFTWARE.
 [web]: https://larsjung.de/pagemap/
 [github]: https://github.com/lrsjng/pagemap
 [npm]: https://www.npmjs.org/package/pagemap
-[gemnasium]: https://gemnasium.com/lrsjng/pagemap
 
 [license-img]: https://img.shields.io/badge/license-MIT-a0a060.svg?style=flat-square
 [web-img]: https://img.shields.io/badge/web-larsjung.de/pagemap-a0a060.svg?style=flat-square
@@ -78,4 +77,3 @@ THE SOFTWARE.
 
 [npm-v-img]: https://img.shields.io/npm/v/pagemap.svg?style=flat-square
 [npm-dm-img]: https://img.shields.io/npm/dm/pagemap.svg?style=flat-square
-[gemnasium-img]: https://img.shields.io/gemnasium/lrsjng/pagemap.svg?style=flat-square
