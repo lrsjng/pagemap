@@ -1,5 +1,5 @@
 const {resolve, join} = require('path');
-const {ghu, jszip, mapfn, read, remove, run, uglify, webpack, wrap, write} = require('ghu');
+const {ghu, jszip, mapfn, read, remove, uglify, webpack, wrap, write} = require('ghu');
 
 const NAME = 'pagemap';
 
@@ -22,24 +22,23 @@ ghu.task('clean', () => {
     return remove(`${BUILD}, ${DIST}`);
 });
 
-ghu.task('lint', () => {
-    return run('eslint .', {stdio: 'inherit'});
-});
-
 ghu.task('build:script', runtime => {
     const webpackConfig = {
+        mode: 'none',
         output: {
             library: NAME,
-            libraryTarget: 'umd'
+            libraryTarget: 'umd',
+            umdNamedDefine: true,
+            globalObject: '(typeof self !== \'undefined\' ? self : this)'
         },
         module: {
-            loaders: [
+            rules: [
                 {
                     include: [SRC],
                     loader: 'babel-loader',
                     query: {
                         cacheDirectory: true,
-                        presets: ['env']
+                        presets: ['@babel/preset-env']
                     }
                 }
             ]
@@ -48,7 +47,7 @@ ghu.task('build:script', runtime => {
 
     return read(`${SRC}/${NAME}.js`)
         .then(webpack(webpackConfig, {showStats: false}))
-        .then(uglify({compressor: {warnings: false}}))
+        .then(uglify())
         .then(wrap(runtime.commentJs))
         .then(write(`${DIST}/${NAME}.min.js`, {overwrite: true}))
         .then(write(`${BUILD}/${NAME}-${runtime.pkg.version}.min.js`, {overwrite: true}));
