@@ -23,30 +23,8 @@ ghu.task('clean', () => {
 });
 
 ghu.task('build:script', runtime => {
-    const webpackConfig = {
-        mode: 'none',
-        output: {
-            library: NAME,
-            libraryTarget: 'umd',
-            umdNamedDefine: true,
-            globalObject: '(typeof self !== \'undefined\' ? self : this)'
-        },
-        module: {
-            rules: [
-                {
-                    include: [SRC],
-                    loader: 'babel-loader',
-                    query: {
-                        cacheDirectory: true,
-                        presets: ['@babel/preset-env']
-                    }
-                }
-            ]
-        }
-    };
-
     return read(`${SRC}/${NAME}.js`)
-        .then(webpack(webpackConfig, {showStats: false}))
+        .then(webpack(webpack.cfg_umd(NAME, [SRC]), {showStats: false}))
         .then(uglify())
         .then(wrap(runtime.commentJs))
         .then(write(`${DIST}/${NAME}.min.js`, {overwrite: true}))
