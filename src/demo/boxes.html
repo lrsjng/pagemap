@@ -2,10 +2,15 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>pagemap boxes demo</title>
-    <link rel="stylesheet" href="boxes.css">
+    <title>pagemap demo - boxes</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
-<body class="checkers">
+<body id="boxes-demo" class="checkers">
+    <div id="banner">
+        <div><a href="https://larsjung.de/pagemap/">pagemap</a> demo</div>
+        <div><a href="text.html">text</a> - <strong>boxes</strong></div>
+    </div>
+
     <div id="container">
         <div id="content" class="checkers">
             <div id="container2">
@@ -21,9 +26,7 @@
         pagemap(document.querySelector('#map'), {
             // viewport: document.querySelector('#container'),
             interval: 50,
-            styles: {
-                div: 'rgba(0,0,0,0.1)'
-            },
+            styles: { div: 'rgba(0,0,0,0.1)' },
             back: 'rgba(255,255,255,1)'
         });
     </script>

@@ -4,16 +4,68 @@
 }
 
 body {
+    font-family: Ubuntu, sans;
+    font-size: 16px;
+    color: #555;
+}
+
+body#boxes-demo {
     width: 2000px;
     height: 2000px;
     background-color: #eee;
+}
+
+a, a:visited, a:active {
+    color: #1d77c2;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #555;
+}
+
+main {
+    margin: 3em auto 6em auto;
+    max-width: 800px;
+    line-height: 1.6em;
+}
+
+h1 {
+    font-size: 3em;
+    font-weight: normal;
+    margin: 0 0 1em;
+}
+
+h2 {
+    font-size: 1.8em;
+    font-weight: normal;
+    margin: 3em 0 1em;
+}
+
+h3 {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin: 2em 0 1em;
+}
+
+#banner {
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 16px;
+    margin: 4px;
+    padding: 4px 12px;
+    text-align: center;
+    line-height: 24px;
+    background: rgba(255,255,255,0.8);
+    border: 1px solid rgba(0,0,0,0.5);
 }
 
 #map {
     position: fixed;
     top: 0;
     right: 0;
-    width: 120px;
+    width: 160px;
     height: 100%;
     z-index: 100;
 }

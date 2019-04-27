@@ -1,6 +1,6 @@
 {
   "name": "pagemap",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Mini map for web pages.",
   "homepage": "https://larsjung.de/pagemap/",
   "bugs": "https://github.com/lrsjng/pagemap/issues",
@@ -13,15 +13,18 @@
   "main": "dist/pagemap",
   "scripts": {
     "lint": "eslint .",
+    "test": "node test",
+    "check": "npm run -s lint && npm run -s test",
     "build": "node ghu release",
-    "precommit": "npm run -s lint && npm run -s build"
+    "precommit": "npm run -s check && npm run -s build"
   },
   "devDependencies": {
-    "@babel/core": "7.4.3",
-    "@babel/preset-env": "7.4.3",
-    "babel-loader": "8.0.5",
+    "@babel/core": "7.4.4",
+    "@babel/preset-env": "7.4.4",
     "eslint": "5.16.0",
-    "ghu": "0.17.0"
+    "ghu": "0.19.0",
+    "jsdom": "15.0.0",
+    "scar": "1.7.0"
   },
   "engines": {
     "node": ">=8.0.0"

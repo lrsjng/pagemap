@@ -24,7 +24,10 @@ ghu.task('clean', () => {
 
 ghu.task('build:script', runtime => {
     return read(`${SRC}/${NAME}.js`)
-        .then(webpack(webpack.cfg_umd(NAME, [SRC]), {showStats: false}))
+        .then(webpack(webpack.cfg_umd(NAME, [SRC])))
+        .then(wrap(runtime.commentJs))
+        .then(write(`${DIST}/${NAME}.js`, {overwrite: true}))
+        .then(write(`${BUILD}/${NAME}-${runtime.pkg.version}.js`, {overwrite: true}))
         .then(uglify())
         .then(wrap(runtime.commentJs))
         .then(write(`${DIST}/${NAME}.min.js`, {overwrite: true}))

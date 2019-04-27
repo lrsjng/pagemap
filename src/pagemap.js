@@ -1,7 +1,7 @@
-const win = global.window;
-const doc = win.document;
-const doc_el = doc.documentElement;
-const body = doc.querySelector('body');
+const WIN = global.window;
+const DOC = WIN.document;
+const DOC_EL = DOC.documentElement;
+const body = DOC.querySelector('body');
 
 const black = pc => `rgba(0,0,0,${pc / 100})`;
 const defaults = {
@@ -25,16 +25,16 @@ const Rect = (x, y, w, h) => { return {x, y, w, h}; };
 const rect_rel_to = (rect, pos = {x: 0, y: 0}) => Rect(rect.x - pos.x, rect.y - pos.y, rect.w, rect.h);
 
 const rect_of_doc = () => {
-    return Rect(0, 0, doc_el.scrollWidth, doc_el.scrollHeight);
+    return Rect(0, 0, DOC_EL.scrollWidth, DOC_EL.scrollHeight);
 };
 
 const rect_of_win = () => {
-    return Rect(win.pageXOffset, win.pageYOffset, doc_el.clientWidth, doc_el.clientHeight);
+    return Rect(WIN.pageXOffset, WIN.pageYOffset, DOC_EL.clientWidth, DOC_EL.clientHeight);
 };
 
 const el_get_offset = el => {
     const br = el.getBoundingClientRect();
-    return {x: br.left + win.pageXOffset, y: br.top + win.pageYOffset};
+    return {x: br.left + WIN.pageXOffset, y: br.top + WIN.pageYOffset};
 };
 
 const rect_of_el = el => {
@@ -70,7 +70,7 @@ module.exports = (canvas, options) => {
     };
 
     const viewport = settings.viewport;
-    const find = sel => Array.from((viewport || doc).querySelectorAll(sel));
+    const find = sel => Array.from((viewport || DOC).querySelectorAll(sel));
 
     let drag = false;
 
@@ -125,7 +125,7 @@ module.exports = (canvas, options) => {
             viewport.scrollLeft = x;
             viewport.scrollTop = y;
         } else {
-            win.scrollTo(x, y);
+            WIN.scrollTo(x, y);
         }
         draw();
     };
@@ -134,8 +134,8 @@ module.exports = (canvas, options) => {
         drag = false;
         canvas.style.cursor = 'pointer';
         body.style.cursor = 'auto';
-        off(win, 'mousemove', on_drag);
-        off(win, 'mouseup', on_drag_end);
+        off(WIN, 'mousemove', on_drag);
+        off(WIN, 'mouseup', on_drag_end);
         on_drag(ev);
     };
 
@@ -153,15 +153,15 @@ module.exports = (canvas, options) => {
 
         canvas.style.cursor = 'crosshair';
         body.style.cursor = 'crosshair';
-        on(win, 'mousemove', on_drag);
-        on(win, 'mouseup', on_drag_end);
+        on(WIN, 'mousemove', on_drag);
+        on(WIN, 'mouseup', on_drag_end);
         on_drag(ev);
     };
 
     const init = () => {
         canvas.style.cursor = 'pointer';
         on(canvas, 'mousedown', on_drag_start);
-        on(viewport || win, 'load resize scroll', draw);
+        on(viewport || WIN, 'load resize scroll', draw);
         if (settings.interval > 0) {
             setInterval(() => draw(), settings.interval);
         }
