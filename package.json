@@ -1,6 +1,6 @@
 {
   "name": "pagemap",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Mini map for web pages.",
   "homepage": "https://larsjung.de/pagemap/",
   "bugs": "https://github.com/lrsjng/pagemap/issues",
@@ -22,7 +22,7 @@
     "@babel/core": "7.4.4",
     "@babel/preset-env": "7.4.4",
     "eslint": "5.16.0",
-    "ghu": "0.19.0",
+    "ghu": "0.20.0",
     "jsdom": "15.0.0",
     "scar": "1.7.0"
   },
