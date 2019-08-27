@@ -221,6 +221,7 @@ return /******/ (function(modules) { // webpackBootstrap
   var scale;
   var drag_rx;
   var drag_ry;
+  var drag_timer;
 
   var draw_rect = function draw_rect(rect, col) {
     if (col) {
@@ -275,6 +276,7 @@ return /******/ (function(modules) { // webpackBootstrap
     BODY.style.cursor = 'auto';
     off(WIN, 'mousemove', on_drag);
     off(WIN, 'mouseup', on_drag_end);
+    clearTimeout(drag_timer);
     on_drag(ev);
   };
 
@@ -290,8 +292,10 @@ return /******/ (function(modules) { // webpackBootstrap
       drag_ry = 0.5;
     }
 
-    canvas.style.cursor = 'crosshair';
-    BODY.style.cursor = 'crosshair';
+    drag_timer = setTimeout(function () {
+      canvas.style.cursor = 'crosshair';
+      BODY.style.cursor = 'crosshair';
+    }, 200);
     on(WIN, 'mousemove', on_drag);
     on(WIN, 'mouseup', on_drag_end);
     on_drag(ev);
