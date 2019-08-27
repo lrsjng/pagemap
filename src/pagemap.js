@@ -80,6 +80,7 @@ module.exports = (canvas, options) => {
     let scale;
     let drag_rx;
     let drag_ry;
+    let drag_timer;
 
     const draw_rect = (rect, col) => {
         if (col) {
@@ -136,6 +137,7 @@ module.exports = (canvas, options) => {
         BODY.style.cursor = 'auto';
         off(WIN, 'mousemove', on_drag);
         off(WIN, 'mouseup', on_drag_end);
+        clearTimeout(drag_timer);
         on_drag(ev);
     };
 
@@ -151,8 +153,10 @@ module.exports = (canvas, options) => {
             drag_ry = 0.5;
         }
 
-        canvas.style.cursor = 'crosshair';
-        BODY.style.cursor = 'crosshair';
+        drag_timer = setTimeout(() => {
+            canvas.style.cursor = 'crosshair';
+            BODY.style.cursor = 'crosshair';
+        }, 200);
         on(WIN, 'mousemove', on_drag);
         on(WIN, 'mouseup', on_drag_end);
         on_drag(ev);
