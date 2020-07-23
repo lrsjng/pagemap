@@ -1,4 +1,4 @@
-/*! pagemap v1.3.0 - https://larsjung.de/pagemap/ */
+/*! pagemap v1.4.0 - https://larsjung.de/pagemap/ */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
 		module.exports = factory();

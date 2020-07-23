@@ -1,7 +1,7 @@
 # pagemap
 
 [![license][license-img]][github] [![web][web-img]][web] [![github][github-img]][github] [![npm][npm-img]][npm]  
-[![version][npm-v-img]][npm] [![downloads][npm-dm-img]][npm] [![build status][travis-img]][travis]
+[![version][npm-v-img]][npm] [![downloads][npm-dm-img]][npm]
 
 Mini map for web pages.
 
@@ -30,13 +30,13 @@ init and style the mini map:
 pagemap(document.querySelector('#map'), {
     viewport: null,
     styles: {
-        'header,footer,section,article': rgba(0,0,0,0.08),
-        'h1,a': rgba(0,0,0,0.10),
-        'h2,h3,h4': rgba(0,0,0,0.08)
+        'header,footer,section,article': 'rgba(0,0,0,0.08)',
+        'h1,a': 'rgba(0,0,0,0.10)',
+        'h2,h3,h4': 'rgba(0,0,0,0.08)'
     },
-    back: rgba(0,0,0,0.02),
-    view: rgba(0,0,0,0.05),
-    drag: rgba(0,0,0,0.10),
+    back: 'rgba(0,0,0,0.02)',
+    view: 'rgba(0,0,0,0.05)',
+    drag: 'rgba(0,0,0,0.10)',
     interval: null
 });
 ```
@@ -69,7 +69,6 @@ THE SOFTWARE.
 [web]: https://larsjung.de/pagemap/
 [github]: https://github.com/lrsjng/pagemap
 [npm]: https://www.npmjs.org/package/pagemap
-[travis]: https://travis-ci.org/lrsjng/pagemap
 
 [license-img]: https://img.shields.io/badge/license-MIT-a0a060.svg?style=flat-square
 [web-img]: https://img.shields.io/badge/web-larsjung.de/pagemap-a0a060.svg?style=flat-square
@@ -78,4 +77,3 @@ THE SOFTWARE.
 
 [npm-v-img]: https://img.shields.io/npm/v/pagemap.svg?style=flat-square
 [npm-dm-img]: https://img.shields.io/npm/dm/pagemap.svg?style=flat-square
-[travis-img]: https://img.shields.io/travis/lrsjng/pagemap.svg?style=flat-square
