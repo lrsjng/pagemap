@@ -57,10 +57,14 @@ module.exports = (canvas, options) => {
         return Rect(x + el.clientLeft - el.scrollLeft, y + el.clientTop - el.scrollTop, el.scrollWidth, el.scrollHeight);
     };
 
-    const calc_scale = (() => {
+    const calc_scale_x = (() => {
         const width = canvas.clientWidth;
+        return (w) => width / w;
+    })();
+
+    const calc_scale_y = (() => {
         const height = canvas.clientHeight;
-        return (w, h) => Math.min(width / w, height / h);
+        return (h) => height / h;
     })();
 
     const resize_canvas = (w, h) => {
@@ -77,7 +81,8 @@ module.exports = (canvas, options) => {
 
     let root_rect;
     let view_rect;
-    let scale;
+    let scale_x;
+    let scale_y;
     let drag_rx;
     let drag_ry;
 
@@ -102,13 +107,14 @@ module.exports = (canvas, options) => {
     const draw = () => {
         root_rect = viewport ? rect_of_content(viewport) : rect_of_doc();
         view_rect = viewport ? rect_of_viewport(viewport) : rect_of_win();
-        scale = calc_scale(root_rect.w, root_rect.h);
+        scale_x = calc_scale_x(root_rect.w);
+        scale_y = calc_scale_y(root_rect.h);
 
-        resize_canvas(root_rect.w * scale, root_rect.h * scale);
+        resize_canvas(root_rect.w * scale_x, root_rect.h * scale_x);
 
         CTX.setTransform(1, 0, 0, 1, 0, 0);
         CTX.clearRect(0, 0, canvas.width, canvas.height);
-        CTX.scale(scale, scale);
+        CTX.scale(scale_x, scale_y);
 
         draw_rect(rect_rel_to(root_rect, root_rect), settings.back);
         apply_styles(settings.styles);
@@ -118,8 +124,8 @@ module.exports = (canvas, options) => {
     const on_drag = ev => {
         ev.preventDefault();
         const cr = rect_of_viewport(canvas);
-        const x = (ev.pageX - cr.x) / scale - view_rect.w * drag_rx;
-        const y = (ev.pageY - cr.y) / scale - view_rect.h * drag_ry;
+        const x = (ev.pageX - cr.x) / scale_x - view_rect.w * drag_rx;
+        const y = (ev.pageY - cr.y) / scale_y - view_rect.h * drag_ry;
 
         if (viewport) {
             viewport.scrollLeft = x;
@@ -144,8 +150,8 @@ module.exports = (canvas, options) => {
 
         const cr = rect_of_viewport(canvas);
         const vr = rect_rel_to(view_rect, root_rect);
-        drag_rx = ((ev.pageX - cr.x) / scale - vr.x) / vr.w;
-        drag_ry = ((ev.pageY - cr.y) / scale - vr.y) / vr.h;
+        drag_rx = ((ev.pageX - cr.x) / scale_x - vr.x) / vr.w;
+        drag_ry = ((ev.pageY - cr.y) / scale_y - vr.y) / vr.h;
         if (drag_rx < 0 || drag_rx > 1 || drag_ry < 0 || drag_ry > 1) {
             drag_rx = 0.5;
             drag_ry = 0.5;
