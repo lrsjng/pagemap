@@ -194,11 +194,17 @@ return /******/ (function(modules) { // webpackBootstrap
     return Rect(x + el.clientLeft - el.scrollLeft, y + el.clientTop - el.scrollTop, el.scrollWidth, el.scrollHeight);
   };
 
-  var calc_scale = function () {
+  var calc_scale_x = function () {
     var width = canvas.clientWidth;
+    return function (w) {
+      return width / w;
+    };
+  }();
+
+  var calc_scale_y = function () {
     var height = canvas.clientHeight;
-    return function (w, h) {
-      return Math.min(width / w, height / h);
+    return function (h) {
+      return height / h;
     };
   }();
 
@@ -218,7 +224,8 @@ return /******/ (function(modules) { // webpackBootstrap
   var drag = false;
   var root_rect;
   var view_rect;
-  var scale;
+  var scale_x;
+  var scale_y;
   var drag_rx;
   var drag_ry;
 
@@ -243,11 +250,12 @@ return /******/ (function(modules) { // webpackBootstrap
   var draw = function draw() {
     root_rect = viewport ? rect_of_content(viewport) : rect_of_doc();
     view_rect = viewport ? rect_of_viewport(viewport) : rect_of_win();
-    scale = calc_scale(root_rect.w, root_rect.h);
-    resize_canvas(root_rect.w * scale, root_rect.h * scale);
+    scale_x = calc_scale_x(root_rect.w);
+    scale_y = calc_scale_y(root_rect.h);
+    resize_canvas(root_rect.w * scale_x, root_rect.h * scale_y);
     CTX.setTransform(1, 0, 0, 1, 0, 0);
     CTX.clearRect(0, 0, canvas.width, canvas.height);
-    CTX.scale(scale, scale);
+    CTX.scale(scale_x, scale_y);
     draw_rect(rect_rel_to(root_rect, root_rect), settings.back);
     apply_styles(settings.styles);
     draw_rect(rect_rel_to(view_rect, root_rect), drag ? settings.drag : settings.view);
@@ -256,8 +264,8 @@ return /******/ (function(modules) { // webpackBootstrap
   var on_drag = function on_drag(ev) {
     ev.preventDefault();
     var cr = rect_of_viewport(canvas);
-    var x = (ev.pageX - cr.x) / scale - view_rect.w * drag_rx;
-    var y = (ev.pageY - cr.y) / scale - view_rect.h * drag_ry;
+    var x = (ev.pageX - cr.x) / scale_x - view_rect.w * drag_rx;
+    var y = (ev.pageY - cr.y) / scale_y - view_rect.h * drag_ry;
 
     if (viewport) {
       viewport.scrollLeft = x;
@@ -282,8 +290,8 @@ return /******/ (function(modules) { // webpackBootstrap
     drag = true;
     var cr = rect_of_viewport(canvas);
     var vr = rect_rel_to(view_rect, root_rect);
-    drag_rx = ((ev.pageX - cr.x) / scale - vr.x) / vr.w;
-    drag_ry = ((ev.pageY - cr.y) / scale - vr.y) / vr.h;
+    drag_rx = ((ev.pageX - cr.x) / scale_x - vr.x) / vr.w;
+    drag_ry = ((ev.pageY - cr.y) / scale_y - vr.y) / vr.h;
 
     if (drag_rx < 0 || drag_rx > 1 || drag_ry < 0 || drag_ry > 1) {
       drag_rx = 0.5;
