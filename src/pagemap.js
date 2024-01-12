@@ -94,7 +94,17 @@ module.exports = (canvas, options) => {
         Object.keys(styles).forEach(sel => {
             const col = styles[sel];
             find(sel).forEach(el => {
-                draw_rect(rect_rel_to(rect_of_el(el), root_rect), col);
+                if (el instanceof SVGElement) {
+                    const rect = el.getBoundingClientRect()
+                    draw_rect(rect_rel_to({
+                        x: rect.x,
+                        y: rect.y,
+                        w: rect.width,
+                        h: rect.height
+                    }, root_rect), col);
+                } else {
+                    draw_rect(rect_rel_to(rect_of_el(el), root_rect), col);
+                }
             });
         });
     };
