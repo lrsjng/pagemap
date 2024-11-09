@@ -1,8 +1,7 @@
 {
   "name": "pagemap",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "Mini map for web pages.",
-  "homepage": "https://larsjung.de/pagemap/",
   "author": "Lars Jung <lrsjng@gmail.com> (https://larsjung.de)",
   "license": "MIT",
   "repository": {
@@ -18,11 +17,11 @@
     "precommit": "npm run -s check && npm run -s build"
   },
   "devDependencies": {
-    "@babel/core": "7.10.5",
-    "@babel/preset-env": "7.10.4",
-    "eslint": "7.5.0",
-    "ghu": "0.25.0",
-    "jsdom": "16.3.0",
-    "scar": "2.3.0"
+    "@babel/core": "7.26.0",
+    "@babel/preset-env": "7.26.0",
+    "eslint": "9.14.0",
+    "ghu": "0.28.5",
+    "jsdom": "25.0.1",
+    "scar": "2.3.4"
   }
 }
